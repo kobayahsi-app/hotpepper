@@ -3,11 +3,10 @@ import Header from "@/components/Header";
 import { SearchField } from "@/components/SearchField";
 import { ShopeType } from "@/types/shop";
 import axios from "axios";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Search() {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const area = searchParams.get('area');
     const genre = searchParams.get('genre');
