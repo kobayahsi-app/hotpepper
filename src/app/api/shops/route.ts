@@ -2,7 +2,8 @@ import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    // const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = "7e39e7c79c80f8a5";
     const searchParams = req.nextUrl.searchParams;
     const area = searchParams.get('area');
     const genre = searchParams.get('genre');
