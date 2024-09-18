@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import { SearchField } from "@/components/SearchField";
 import { ShopeType } from "@/types/shop";
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,9 +12,11 @@ export default function Search() {
     const area = searchParams.get('area');
     const genre = searchParams.get('genre');
     const keyword = searchParams.get('keyword');
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [shops, setShops] = useState<ShopeType[] | []>([]);
     useEffect(() => {
         const fetchData = async() => {
+            setIsLoading(true);
             let areaCode = "";
             let genreCode = "";
             let resultKeyword = "";
@@ -29,6 +32,9 @@ export default function Search() {
                 resultKeyword = `${areaCode === "" && genreCode === "" ? "?" : "&"}keyword=${keyword}`;
             }
             const response = await axios.get(`api/shops${areaCode}${genreCode}${resultKeyword}`);
+            if(response.status === 200) {
+                setIsLoading(false);
+            }
             setShops(response.data.shop);
         }
         fetchData();
@@ -41,12 +47,18 @@ export default function Search() {
             </div>
             <main>
                 <h2>検索結果</h2>
-                {shops.length > 0 && (
-                    shops.map((shop) => (
-                        <ul key={shop.id}>
-                            <li>{shop.name}</li>
-                        </ul>
-                    ))
+                {isLoading ? (
+                    <div>
+                        <CircularProgress />
+                    </div>
+                ) : (
+                    shops.length > 0 && (
+                        shops.map((shop) => (
+                            <ul key={shop.id}>
+                                <li>{shop.name}</li>
+                            </ul>
+                        ))
+                    )
                 )}
             </main>
             <footer>
