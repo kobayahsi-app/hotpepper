@@ -22,15 +22,15 @@ const changeFreeFoodText = (freeFood: string) => {
         return freeFood;
     }
 }
-const changePrivateRoomText = (privateRoom: string) => {
-    if(privateRoom.includes('あり')) {
-        privateRoom = privateRoom.replace(/あり/g, "個室あり");
-        return privateRoom;
-    } else if(privateRoom.includes('なし')) {
-        privateRoom = "";
-        return privateRoom;
-    }
-}
+// const changePrivateRoomText = (privateRoom: string) => {
+//     if(privateRoom.includes('あり')) {
+//         privateRoom = privateRoom.replace(/あり/g, "個室あり");
+//         return privateRoom;
+//     } else if(privateRoom.includes('なし')) {
+//         privateRoom = "";
+//         return privateRoom;
+//     }
+// }
 
 export const ShopCard = ({ shop }: Props) => {
     return(

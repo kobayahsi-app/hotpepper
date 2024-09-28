@@ -85,7 +85,7 @@ export default function Search() {
                 <SearchField areaCode={area} genreCode={genre} resultKeyword={keyword} />
             </div>
             <main>
-                <h2>検索結果（{total}件）</h2>
+                <h2>{total}件（{page} / {navs.length} ページ）</h2>
                 {isLoading ? (
                     <div>
                         <CircularProgress />
