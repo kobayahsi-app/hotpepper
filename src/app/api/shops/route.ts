@@ -8,10 +8,12 @@ export async function GET(req: NextRequest) {
     const area = searchParams.get('area');
     const genre = searchParams.get('genre');
     const keyword = searchParams.get('keyword');
+    const page = searchParams.get('page');
 
     let areaCode = "";
     let genreCode = "";
     let resultKeyword = "";
+    let startNum = "&start=1";
     if (area !== "null") {
         areaCode = `&middle_area=${area}`;
     } 
@@ -21,10 +23,14 @@ export async function GET(req: NextRequest) {
     if (keyword !== "null") {
         resultKeyword = `&keyword=${keyword}`;
     }
-    const searchURL = `https://webservice.recruit.co.jp/hotpepper/gourmet/v1?key=${apiKey}&large_area=Z091${areaCode}${genreCode}${resultKeyword}`;
+    if(page !== null) {
+        const num = Number(page) * 50 - 49;
+        startNum = `&start=${num}`
+    }
+    const searchURL = `https://webservice.recruit.co.jp/hotpepper/gourmet/v1?key=${apiKey}&large_area=Z091${areaCode}${genreCode}${resultKeyword}${startNum}`;
+
     try {
-        const response = await axios.get(`${searchURL}&count=300&format=json`);
-        // const response = await axios.get(`https://webservice.recruit.co.jp/hotpepper/gourmet/v1?key=${apiKey}&count=300&format=json`);
+        const response = await axios.get(`${searchURL}&count=50&format=json`);
         const data = await response.data;
 
         return NextResponse.json(data.results);
