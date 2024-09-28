@@ -36,17 +36,17 @@ export const ShopCard = ({ shop }: Props) => {
     return(
         <div style={{marginBottom: 20}} key={shop.id}>
             <p>
-                "店名":{shop.name},<br />
-                "住所":{shop.address},<br />
-                "最寄り駅":{shop.station_name}駅,<br />
-                "ジャンル":{shop.genre.name},<br />
-                "予算":{shop.budget.name},<br />
-                "飲み放題:{changeFreeDrinkText(shop.free_drink)}, <br />
-                "食べ放題:{changeFreeFoodText(shop.free_food)}, <br />
-                "深夜営業:{shop.midnight}, <br />
-                "個室:{shop.private_room}, <br />
-                "特徴:{shop.genre.catch + shop.catch}, <br />
-                "詳細:{shop.urls.pc}, <br />
+                &quot;店名&quot;:{shop.name},<br />
+                &quot;住所&quot;:{shop.address},<br />
+                &quot;最寄り駅&quot;:{shop.station_name}駅,<br />
+                &quot;ジャンル&quot;:{shop.genre.name},<br />
+                &quot;予算&quot;:{shop.budget.name},<br />
+                &quot;飲み放題&quot;:{changeFreeDrinkText(shop.free_drink)}, <br />
+                &quot;食べ放題&quot;:{changeFreeFoodText(shop.free_food)}, <br />
+                &quot;深夜営業&quot;:{shop.midnight}, <br />
+                &quot;個室&quot;:{shop.private_room}, <br />
+                &quot;特徴&quot;:{shop.genre.catch + shop.catch}, <br />
+                &quot;詳細&quot;:{shop.urls.pc}, <br />
             </p>
         </div>
     )
